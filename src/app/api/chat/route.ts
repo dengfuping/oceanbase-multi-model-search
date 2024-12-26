@@ -12,6 +12,7 @@ export async function POST(request: Request) {
     });
     return response;
   } catch (error) {
+    console.log(NextResponse.error());
     return NextResponse.error();
   }
 }

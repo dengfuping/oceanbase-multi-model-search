@@ -7,5 +7,5 @@ RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm run build
  
-EXPOSE 8000
+EXPOSE 3000
 CMD pnpm run start

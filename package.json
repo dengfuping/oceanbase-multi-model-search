@@ -5,7 +5,7 @@
   "repository": "git@github.com:oceanbase/oceanbase-multi-model-search.git",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "lint": "next lint",
     "start": "next start"
   },

@@ -11,7 +11,7 @@ import {
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // import sql from 'react-syntax-highlighter/dist/esm/languages/hljs/sql';
 // import defaultStyle from 'react-syntax-highlighter/dist/esm/styles/hljs/default-style';
-import { isEmpty, min, range, sample } from 'lodash-es';
+import { isEmpty, keyBy, min, range, sample } from 'lodash-es';
 import { format } from 'sql-formatter';
 import { useSize } from 'ahooks';
 import MapContainer from '../MapContainer';
@@ -112,7 +112,7 @@ const Main = () => {
               children: (
                 <Space size={20} direction="vertical" className="content">
                   <div className="content-item">
-                    ① 旅行起始地、② 行程范围
+                    <div className="content-title">① 旅行起始地、② 行程范围</div>
                     <img src="/image/arrow.svg" className="arrow" />
                     <Space size={16} className="query-type">
                       <img src="/image/gis.svg" />
@@ -120,18 +120,18 @@ const Main = () => {
                     </Space>
                   </div>
                   <div className="content-item">
-                    ③ 景点评分、④ 出行季节
+                    <div className="content-title">③ 景点评分、④ 出行季节</div>
                     <img src="/image/arrow.svg" className="arrow" />
                     <Space size={16} className="query-type">
-                      <img src="/image/relation.svg" />
+                      <img src="/image/relation.svg" style={{ marginBottom: -3 }} />
                       关系数据查询
                     </Space>
                   </div>
                   <div className="content-item">
-                    ⑤ (非必要) 景色类型、饮食风味等
+                    <div className="content-title">⑤ (非必要) 景色类型、饮食风味等</div>
                     <img src="/image/arrow.svg" className="arrow" />
                     <Space size={16} className="query-type">
-                      <img src="/image/vector.svg" />
+                      <img src="/image/vector.svg" style={{ marginBottom: -3 }} />
                       向量查询
                     </Space>
                   </div>
@@ -355,10 +355,14 @@ const Main = () => {
                                   </div>
                                   <div style={{ fontSize: 12, color: token.colorTextSecondary }}>
                                     <Space size={12} style={{ margin: '4px 0px' }}>
-                                      <span style={{ color: token.colorError }}>
+                                      <span
+                                        style={{ color: token.colorError, whiteSpace: 'nowrap' }}
+                                      >
                                         {`${item.score}分`}
                                       </span>
-                                      <span>{`季节：${item.season}`}</span>
+                                      <span style={{ whiteSpace: 'nowrap' }}>
+                                        {`季节：${item.season}`}
+                                      </span>
                                       <span>
                                         {`价格：${
                                           isEmpty(ticketParsed)
@@ -383,7 +387,13 @@ const Main = () => {
                                   }}
                                 >
                                   <div>
-                                    {`价格：${item.ticket?.replaceAll('\\n', '') || '免费'}\n`}
+                                    {`价格：\n${
+                                      Object.entries(ticketParsed)
+                                        .map(([key, value]) => `${key}：${value}`)
+                                        .join('；') ||
+                                      item.ticket?.replaceAll('\\n', '') ||
+                                      '免费'
+                                    }`}
                                   </div>
                                   <div>{item.address_text?.replaceAll('\n\n', '\n')}</div>
                                 </div>

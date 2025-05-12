@@ -50,13 +50,18 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          white-space: nowrap;
+          .content-title {
+            width: 230px;
+          }
           .arrow {
-            margin: 0 24px;
+            margin-left: 12px;
+            margin-right: 24px;
             flex: 1;
             max-width: 300px;
           }
           .query-type {
-            width: 150px;
+            width: 180px;
           }
         }
       }
@@ -91,7 +96,7 @@
         /* work only for help message */
         .ant-pro-chat-list .ant-pro-chat-list-item-left:first-child {
           .ant-pro-chat-message-content {
-            height: 300px;
+            height: 400px;
           }
         }
         .ant-pro-chat-list .ant-pro-chat-list-item-left {
@@ -152,8 +157,8 @@
 }
 .chat-tip-item {
   height: 40px;
-  line-height: 24px;
-  padding: 8px 12px;
+  line-height: 40px;
+  padding: 0px 12px;
   background: #ffffff;
   border: 1px solid #e2e8f3;
   border-radius: 8px;
@@ -163,4 +168,8 @@
     color: #086fff;
     border-color: #086fff;
   }
+}
+
+.ant-popconfirm {
+  max-width: 300px;
 }

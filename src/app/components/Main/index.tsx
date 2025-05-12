@@ -549,7 +549,13 @@ const Main = () => {
             }}
           />
           <div ref={footerRef} className="footer">
-            本应用生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的观点，仅供您参考。您使用本应用需遵守《OceanBase官方网站服务协议》《OceanBase官方网站隐私政策》
+            本应用生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的观点，仅供您参考。您使用本应用需遵守
+            <a target="_blank" href="https://www.oceanbase.com/legal/service-agreement">
+              《OceanBase 官方网站服务协议》
+            </a>
+            <a target="_blank" href="https://www.oceanbase.com/legal/privacy">
+              《OceanBase 隐私政策》
+            </a>
           </div>
         </div>
       </div>

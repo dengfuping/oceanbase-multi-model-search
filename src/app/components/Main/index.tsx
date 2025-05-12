@@ -382,7 +382,6 @@ const Main = () => {
                                     whiteSpace: 'pre-wrap',
                                   }}
                                 >
-                                  <div>{`景点介绍：${item.intro}\n\n`}</div>
                                   <div>
                                     {`价格：${item.ticket?.replaceAll('\\n', '') || '免费'}\n`}
                                   </div>

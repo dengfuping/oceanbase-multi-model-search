@@ -79,6 +79,8 @@ const Main = () => {
   // judge for meta.need_start
   const [resetMessageId, setResetMessageId] = useState('');
   const [loading, setLoading] = useState(false);
+  const [activeKey, setActiveKey] = useState<string[]>([]);
+  const [attractionName, setAttractionName] = useState('');
   const proChat = useProChat();
   const tipList = [
     '春天去杭州，西湖附近10公里内评分超过90的免费景点推荐',
@@ -89,6 +91,9 @@ const Main = () => {
   const [meta, setMeta] = useState<Meta | undefined>(undefined);
   const positionList =
     meta?.longs?.map((item, index) => [item, meta.lats?.[index] as number]) || [];
+  const attractionIndex =
+    meta?.datas?.findIndex((item) => item.attraction_name === attractionName) ?? -1;
+  const attractionPosition = positionList[attractionIndex];
 
   return (
     <div className="multi-model-demo-container">
@@ -332,6 +337,13 @@ const Main = () => {
                           expandIcon={({ isActive }) => (
                             <RightOutlined rotate={isActive ? -90 : 90} />
                           )}
+                          onChange={(key) => {
+                            // expand
+                            if (key.length > activeKey.length) {
+                              setAttractionName(key[key.length - 1]);
+                            }
+                            setActiveKey(key);
+                          }}
                           items={meta?.datas?.map((item, index) => {
                             const ticketParsed = jsonParse(
                               item.ticket?.replaceAll('\\n', '')?.replaceAll("'", '"') || '',
@@ -542,7 +554,7 @@ const Main = () => {
         </div>
       </div>
       <div className="right">
-        <MapContainer positionList={positionList} />
+        <MapContainer positionList={positionList} position={attractionPosition} />
       </div>
     </div>
   );

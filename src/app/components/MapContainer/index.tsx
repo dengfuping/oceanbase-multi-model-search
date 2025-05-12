@@ -1,13 +1,14 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import styles from './index.module.css';
 
 export interface MapContainerProps {
   positionList: number[][];
+  position?: number[];
 }
 
-export default function MapContainer({ positionList }: MapContainerProps) {
+export default function MapContainer({ positionList, position }: MapContainerProps) {
   const AMapRef = useRef<any>(null);
   const mapRef = useRef<any>(null);
   const layerRef = useRef<any>(null);

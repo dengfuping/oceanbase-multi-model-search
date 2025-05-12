@@ -1,5 +1,5 @@
 .multi-model-demo-container {
-  height: 100vh;
+  height: calc(100vh - 48px);
   padding: 24px;
   display: flex;
   background-color: #ffffff;

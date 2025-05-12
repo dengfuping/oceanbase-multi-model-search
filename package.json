@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "@ant-design/icons": "^5.5.2",
+    "@ant-design/icons": "^5.6.1",
     "@ant-design/pro-chat": "^1.15.3",
-    "@oceanbase/design": "^0.4.4",
+    "@oceanbase/design": "^0.4.10",
     "@oceanbase/util": "^0.4.2",
     "ahooks": "^3.8.4",
     "lodash-es": "^4.17.21",
@@ -21,18 +21,18 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-syntax-highlighter": "^15.6.1",
-    "sql-formatter": "^15.4.7"
+    "sql-formatter": "^15.6.1"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.17.9",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/node": "^20.17.46",
+    "@types/react": "^18.3.21",
+    "@types/react-dom": "^18.3.7",
     "@types/react-syntax-highlighter": "^15.5.13",
     "encoding": "^0.1.13",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.0.4",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }

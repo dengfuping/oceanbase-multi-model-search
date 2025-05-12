@@ -1,10 +1,10 @@
 .multi-model-demo-container {
-  height: calc(100vh - 48px);
+  height: 100vh;
   padding: 24px;
   display: flex;
   background-color: #ffffff;
   color: #000000d9;
-  min-width: 1080px;
+  min-width: 960px;
   overflow: auto;
 
   .left {

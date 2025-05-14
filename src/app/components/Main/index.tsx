@@ -11,7 +11,7 @@ import {
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // import sql from 'react-syntax-highlighter/dist/esm/languages/hljs/sql';
 // import defaultStyle from 'react-syntax-highlighter/dist/esm/styles/hljs/default-style';
-import { isEmpty, keyBy, min, range, sample } from 'lodash-es';
+import { isEmpty, keyBy, min, range, sample, toString } from 'lodash-es';
 import { format } from 'sql-formatter';
 import { useSize } from 'ahooks';
 import MapContainer from '../MapContainer';
@@ -86,9 +86,13 @@ export interface Meta {
   score?: number;
 }
 
+const ALERT_COLLAPSED_KEY = '__ALERT_COLLAPSED';
+
 const Main = () => {
   const { token } = theme.useToken();
-  const [alertCollapsed, setAlertCollapsed] = useState(false);
+  const [alertActiveKey, setAlertActiveKey] = useState(
+    Boolean(localStorage.getItem(ALERT_COLLAPSED_KEY)) ? [] : ['alert'],
+  );
   const alertRef = useRef<HTMLDivElement>(null);
   const alertSize = useSize(alertRef);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -119,6 +123,11 @@ const Main = () => {
           ref={alertRef}
           className="alert"
           bordered={false}
+          activeKey={alertActiveKey}
+          onChange={(key) => {
+            setAlertActiveKey(key);
+            localStorage.setItem(ALERT_COLLAPSED_KEY, toString(!key.includes('alert')));
+          }}
           expandIconPosition="end"
           expandIcon={({ isActive }) => <RightOutlined rotate={isActive ? -90 : 90} />}
           items={[
@@ -190,6 +199,9 @@ const Main = () => {
             appStyle={{
               height: `calc(100% - ${footerSize?.height || 0}px)`,
             }}
+            onChatsChange={() => {
+              setAlertActiveKey([]);
+            }}
             // onChatEnd not work for now
             // issue https://github.com/ant-design/pro-chat/issues/305
             onChatEnd={() => {
@@ -251,8 +263,9 @@ const Main = () => {
             helloMessage={
               <div>
                 <div style={{ lineHeight: '24px' }}>
-                  您好，我是 OceanBase
-                  研发的文旅小助手，可以根据您提供的：1.旅行起始地（请尽量包含省市区街道等层级区划信息以确保定位准确）；2.行程范围；3.景点评分（100分制）；4.出行季节，为您推荐景点
+                  {
+                    '您好，我是 OceanBase 研发的文旅小助手 Demo，可以根据您提供的：1. 旅行起始地（请尽量包含省市区街道等层级区划信息以确保定位准确）；2. 行程范围；3. 景点评分（100分制）；4. 出行季节，为您推荐景点。'
+                  }
                 </div>
                 <Space size={8} direction="vertical" className="chat-tip">
                   <div className="chat-tip-text">您可以试着问我</div>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Card, Collapse, ConfigProvider, Popover, Space, theme } from '@oceanbase/design';
 import { CheckCircleFilled, RightOutlined } from '@ant-design/icons';
 import {
@@ -567,6 +567,30 @@ const Main = () => {
 };
 
 export default function () {
+  const sendMessage = (msg: string) => {
+    window.parent.postMessage(msg, '*');
+  };
+
+  useEffect(() => {
+    sendMessage('iframe-response');
+    // 监听跨域请求的返回
+    window.addEventListener(
+      'message',
+      (event) => {
+        console.log(event, event.data);
+      },
+      false,
+    );
+    return () => {
+      window.removeEventListener(
+        'message',
+        (event) => {
+          console.log(event, event.data);
+        },
+        false,
+      );
+    };
+  }, []);
   return (
     <ConfigProvider
       theme={{

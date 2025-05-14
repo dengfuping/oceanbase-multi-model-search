@@ -100,13 +100,10 @@
           }
         }
         .ant-pro-chat-list .ant-pro-chat-list-item-left {
-          width: 100%;
           .ant-pro-chat-list-item-message-container {
-            width: 100%;
             display: block;
           }
           .ant-pro-chat-message-content {
-            width: 100%;
             display: block;
           }
         }

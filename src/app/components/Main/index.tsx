@@ -27,6 +27,23 @@ function jsonParse(jsonStr: string, defaultValue: any): any {
   }
 }
 
+function parseSeason(decimal: number) {
+  const binary = decimal.toString(2).padStart(4, '0').slice(-4);
+
+  // 季节映射（高位到低位：冬、秋、夏、春）
+  const seasonMap = ['冬季', '秋季', '夏季', '春季'];
+
+  // 遍历二进制位，映射为季节
+  const seasons = [];
+  for (let i = 0; i < 4; i++) {
+    if (binary[i] === '1') {
+      seasons.push(seasonMap[i]);
+    }
+  }
+
+  return seasons.length === 4 ? '四季皆宜' : seasons.reverse().join('、') || '无';
+}
+
 export interface ChatMessage extends ProChatMessage<Record<string, any>> {
   sql?: string;
   datas?: string;
@@ -83,10 +100,10 @@ const Main = () => {
   const [attractionName, setAttractionName] = useState('');
   const proChat = useProChat();
   const tipList = [
-    '春天去杭州，西湖附近10公里内评分超过90的免费景点推荐',
+    '春天去杭州，西湖附近10公里内评分超过90分的免费景点推荐',
     '秋天去北京，在颐和园附近20公里范围内评分超过80分的景点有哪些',
     '冬天去大连，星海广场附近20公里范围内评分超过80分的免费景点推荐',
-    '夏天去成都，太古里附近10公里内评分超过90的收费景点推荐',
+    '夏天去成都，太古里附近10公里内评分超过90分的收费景点推荐',
   ];
   const [meta, setMeta] = useState<Meta | undefined>(undefined);
   const positionList =
@@ -373,7 +390,7 @@ const Main = () => {
                                         {`${item.score}分`}
                                       </span>
                                       <span style={{ whiteSpace: 'nowrap' }}>
-                                        {`季节：${item.season}`}
+                                        {`季节：${parseSeason(item.season || 0)}`}
                                       </span>
                                       <span>
                                         {`价格：${

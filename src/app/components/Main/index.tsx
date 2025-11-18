@@ -104,10 +104,10 @@ const Main = () => {
   const [attractionName, setAttractionName] = useState('');
   const proChat = useProChat();
   const tipList = [
-    '春天去杭州，西湖附近10公里内评分超过90分的免费景点推荐',
+    '春天去杭州，西湖附近10公里内评分超过90分的景点推荐',
     '秋天去北京，在颐和园附近20公里范围内评分超过80分的景点有哪些',
-    '冬天去大连，星海广场附近20公里范围内评分超过80分的免费景点推荐',
-    '夏天去成都，太古里附近10公里内评分超过90分的收费景点推荐',
+    '冬天去大连，星海广场附近20公里范围内评分超过80分的景点推荐',
+    '夏天去成都，太古里附近10公里内评分超过90分的景点推荐',
   ];
   const [meta, setMeta] = useState<Meta | undefined>(undefined);
   const positionList =
